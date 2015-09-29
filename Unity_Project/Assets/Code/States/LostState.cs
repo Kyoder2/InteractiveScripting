@@ -5,7 +5,7 @@ namespace Assets.Code.States
 {
 	public class LostState : IStateBase
 	{
-		private statemanager manager;
+		private StateManager manager;
 
 		public LostState(StateManager managerRef)  
 		{
@@ -15,7 +15,10 @@ namespace Assets.Code.States
 
 		public void StateUpdate()
 		{
-
+				if (Input.GetKeyUp (KeyCode.Space))
+			{
+				manager.SwitchState (new BeginState (manager));
+			}
 		}
 
 		public void ShowIt()

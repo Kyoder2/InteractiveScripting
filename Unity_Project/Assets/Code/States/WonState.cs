@@ -4,8 +4,8 @@ using Assets.Code.Interfaces;
 namespace Assets.Code.States
 {
 	public class WonState : IStateBase
-	{Won
-		private statemanager manager;
+	{
+		private StateManager manager;
 
 		public WonState(StateManager managerRef)  
 		{
@@ -15,7 +15,10 @@ namespace Assets.Code.States
 
 		public void StateUpdate()
 		{
-
+				if (Input.GetKeyUp (KeyCode.Space))
+			{
+				manager.SwitchState (new BeginState (manager));
+			}
 		}
 
 		public void ShowIt()

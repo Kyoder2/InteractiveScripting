@@ -5,7 +5,7 @@ namespace Assets.Code.States
 {
 	public class PlayState : IStateBase
 	{
-		private statemanager manager;
+		private StateManager manager;
 
 		public PlayState(StateManager managerRef)  
 		{
@@ -15,7 +15,10 @@ namespace Assets.Code.States
 
 		public void StateUpdate()
 		{
-
+				if (Input.GetKeyUp (KeyCode.Space))
+			{
+				manager.SwitchState (new WonState (manager));
+			}
 		}
 
 		public void ShowIt()
