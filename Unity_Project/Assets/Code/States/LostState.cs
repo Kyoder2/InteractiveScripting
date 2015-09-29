@@ -3,14 +3,14 @@ using Assets.Code.Interfaces;
 
 namespace Assets.Code.States
 {
-	public class BeginState : IStateBase
+	public class LostState : IStateBase
 	{
 		private statemanager manager;
 
-		public BeginState(StateManager managerRef)  
+		public LostState(StateManager managerRef)  
 		{
 			manager = managerRef; //testing some stuff
-			Debug.Log("Constructing BeginState");
+			Debug.Log("Constructing LostState");
 		}
 
 		public void StateUpdate()
