@@ -40,6 +40,7 @@ namespace Assets.Code.States
 		void Switch()
 		{
 			Time.timeScale = 1;
+			Application.LoadLevel("scene1");
 			manager.SwitchState ( new PlayState (manager));
 		}
 	}

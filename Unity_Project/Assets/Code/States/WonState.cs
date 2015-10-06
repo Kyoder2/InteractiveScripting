@@ -17,7 +17,7 @@ namespace Assets.Code.States
 		{
 				if (Input.GetKeyUp (KeyCode.Space))
 			{
-				manager.SwitchState (new BeginState (manager));
+				manager.SwitchState (new PlayState (manager));
 			}
 		}
 

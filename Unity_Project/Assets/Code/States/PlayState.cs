@@ -12,9 +12,7 @@ namespace Assets.Code.States
 			manager = managerRef; //testing some stuff
 			Debug.Log("Constructing PlayState");
 		}
-
-		public void StateUpdate()
-		{
+		public void StateUpdate()		{
 				if (Input.GetKeyUp (KeyCode.Space))
 			{
 				manager.SwitchState (new WonState (manager));

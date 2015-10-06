@@ -4,7 +4,22 @@ using Assets.Code.Interfaces;
 
 public class StateManager : MonoBehaviour
 {
+	
 	private IStateBase activeState;
+	private static StateManager instanceRef;
+
+	void Awake ()
+	{
+		if(instanceRef == null)
+		{
+			instanceRef = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			DestroyImmediate(gameObject);
+		}
+	}
 
 	void Start ()
 	{
@@ -22,7 +37,7 @@ public class StateManager : MonoBehaviour
 		if(activeState !=null)
 			activeState.ShowIt();
 	}
-	
+
 	public void SwitchState (IStateBase newState)
 	{
 		activeState = newState;
