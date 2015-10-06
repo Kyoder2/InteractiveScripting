@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Assets.Code.Interfaces;
 
 namespace Assets.Code.States
@@ -6,42 +6,31 @@ namespace Assets.Code.States
 	public class BeginState : IStateBase
 	{
 		private StateManager manager;
-		private float futureTime= 0;
-		private int countDown = 0;
-		private float screenDuration = 8;
-
-		public BeginState(StateManager managerRef)  
+		
+		public BeginState (StateManager managerRef)
 		{
-			manager = managerRef; //testing some stuff
-			Debug.Log("Constructing BeginState");
-			futureTime = screenDuration + Time.realtimeSinceStartup;
-			Time.timeScale = 0;
+			manager = managerRef;
+			Debug.Log ("In BeginState");
+			if(Application.loadedLevelName != "Scene0")
+				Application.LoadLevel("Scene0");
 		}
-
-		public void StateUpdate()
+		
+		public void StateUpdate ()
 		{
-			float rightNow = Time.realtimeSinceStartup;
-			countDown = (int) futureTime - (int)rightNow;
+		}
+		
+		public void ShowIt ()
+		{
+			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height),
+				manager.gameDataRef.beginStateSplash, 
+				ScaleMode.StretchToFill);
 
-			if (Input.GetKeyUp (KeyCode.Space) || countDown <= 0)
+			if (GUI.Button(new Rect(10, 10, 250, 60),
+				"Press Here to Continue") ||
+				Input.anyKeyDown)
 			{
-				Switch();
+				manager.SwitchState (new SetupState (manager));
 			}
-		}
-
-		public void ShowIt()
-		{
-			if(GUI.Button(new Rect(10,10,150,100), "Press to Play")){
-				
-				Switch();
-			}			
-			GUI.Box ( new Rect (Screen.width - 60,10,50,25), countDown.ToString());
-		}	
-		void Switch()
-		{
-			Time.timeScale = 1;
-			Application.LoadLevel("scene1");
-			manager.SwitchState ( new PlayState (manager));
 		}
 	}
 }
